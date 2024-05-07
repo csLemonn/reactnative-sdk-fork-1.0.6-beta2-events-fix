@@ -88,6 +88,7 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation 'com.github.digio-tech:gateway:v4.0.8'
+  implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
   implementation(name: 'digio_kyc_workflow-4.0.9', ext: 'aar')
 //   implementation 'com.github.digio-tech:gateway_kyc:v4.0.8'
   implementation 'androidx.appcompat:appcompat:1.6.1'

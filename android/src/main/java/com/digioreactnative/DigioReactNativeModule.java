@@ -139,12 +139,12 @@ public class DigioReactNativeModule extends ReactContextBaseJavaModule implement
 
   @Override
   public void onHostPause() {
-    this.getReactApplicationContext().unregisterReceiver(eventBroadcastReceiver);
+    // this.getReactApplicationContext().unregisterReceiver(eventBroadcastReceiver);
   }
 
   @Override
   public void onHostDestroy() {
-
+    this.getReactApplicationContext().unregisterReceiver(eventBroadcastReceiver);
   }
 
   @Override
