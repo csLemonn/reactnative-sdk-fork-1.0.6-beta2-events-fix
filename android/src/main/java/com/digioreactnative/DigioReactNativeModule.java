@@ -1,5 +1,6 @@
 package com.digioreactnative;
 
+import android.util.Log;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -47,6 +48,8 @@ public class DigioReactNativeModule extends ReactContextBaseJavaModule implement
   public static final String AAR_VERSION = "4.0.8";
   public static final int DIGIO_ACTIVITY = 73457843;
   private Promise resultPromise;
+  private boolean isReceiverRegistered = false;
+
 
   private BroadcastReceiver eventBroadcastReceiver = new BroadcastReceiver() {
 
@@ -133,8 +136,12 @@ public class DigioReactNativeModule extends ReactContextBaseJavaModule implement
 
   @Override
   public void onHostResume() {
-    IntentFilter filter = new IntentFilter(DigioConstants.GATEWAY_EVENT);
-    this.getReactApplicationContext().registerReceiver(eventBroadcastReceiver, filter);
+    if (!isReceiverRegistered) {
+      IntentFilter filter = new IntentFilter(DigioConstants.GATEWAY_EVENT);
+      this.getReactApplicationContext().registerReceiver(eventBroadcastReceiver, filter);
+      isReceiverRegistered = true;
+    }
+    
   }
 
   @Override
@@ -144,7 +151,10 @@ public class DigioReactNativeModule extends ReactContextBaseJavaModule implement
 
   @Override
   public void onHostDestroy() {
-    this.getReactApplicationContext().unregisterReceiver(eventBroadcastReceiver);
+   if (isReceiverRegistered) {
+        this.getReactApplicationContext().unregisterReceiver(eventBroadcastReceiver);
+        isReceiverRegistered = false;
+     }
   }
 
   @Override
