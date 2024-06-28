@@ -124,7 +124,9 @@ public class DigioReactNativeModule extends ReactContextBaseJavaModule implement
       }
       resultMap.putInt("errorCode", resultCode);
     }
-    resultPromise.resolve(resultMap);
+    if(resultPromise != null){
+      resultPromise.resolve(resultMap);
+    }
   }
 
   @SuppressLint("WrongConstant")
