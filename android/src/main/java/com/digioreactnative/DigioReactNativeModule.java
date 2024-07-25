@@ -148,19 +148,19 @@ public class DigioReactNativeModule extends ReactContextBaseJavaModule implement
 
   @Override
   public void onHostPause() {
-    // this.getReactApplicationContext().unregisterReceiver(eventBroadcastReceiver);
+    this.getReactApplicationContext().unregisterReceiver(eventBroadcastReceiver);
   }
 
   @Override
   public void onHostDestroy() {
-   if (isReceiverRegistered) {
-       try{
-         this.getReactApplicationContext().unregisterReceiver(eventBroadcastReceiver);
-          isReceiverRegistered = false;
-       } catch (IllegalArgumentException e) {
-          Log.w("DigioReactNativeModule", "Receiver not registered", e);
-        }
-     }
+  //  if (isReceiverRegistered) {
+  //      try{
+  //        this.getReactApplicationContext().unregisterReceiver(eventBroadcastReceiver);
+  //         isReceiverRegistered = false;
+  //      } catch (IllegalArgumentException e) {
+  //         Log.w("DigioReactNativeModule", "Receiver not registered", e);
+  //       }
+  //    }
   }
 
   @Override
